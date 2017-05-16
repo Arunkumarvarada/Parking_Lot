@@ -1,37 +1,54 @@
 package com.gojek.parkingsol;
 
-import java.util.TreeMap;;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.TreeMap;
 
 public class ParkingSlotManagementImpl implements ParkingSlotManagement {
-	private int MAXSIZE=0;
-	private TreeMap<String, Car> parkinglot = new TreeMap<String, Car>();
+	private int MAXSIZE = 0;
+	private TreeMap<String, Car> parkinglot;
+	private ArrayList<Integer> parkingSlotsList;
+	private HashMap<String, ArrayList<String>> colorWiseCarsList;
 
 	public void getStatus() {
-		// TODO Auto-generated method stub
+	}
+
+	public void getRegistrationNumbersFromColor(String color) {
 
 	}
 
-	public void destroyParkingSlot(){
+	public void getSlotNumbersFromColor(String color) {
+
+	}
+
+	public void destroyParkingSlot() {
+		parkinglot=null;
+		parkingSlotsList=null;
+		colorWiseCarsList=null;
 		System.out.println("Destroyed the paring slot");
 	}
+
 	public void createParkingSlots() {
-		// TODO Auto-generated method stub
 
 	}
 
 	public void delteParkingSlots() {
-		// TODO Auto-generated method stub
 
 	}
 
-	public void park() {
-		// TODO Auto-generated method stub
+	public void leave(String slotNo) {
 
 	}
 
 	public void getParkingSlotsBasedonColor(String color) {
-		// TODO Auto-generated method stub
 
 	}
 
+	public void getSlotNumberFromRegNo(String regNo) {
+		
+	}
+
+	public void createParkingLot(String lotCount){
+		
+	}
 }
