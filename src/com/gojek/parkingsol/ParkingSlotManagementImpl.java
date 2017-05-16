@@ -21,7 +21,7 @@ public class ParkingSlotManagementImpl implements ParkingSlotManagement {
 
 	}
 
-	public void destroyParkingSlot() {
+	public void destroyParkingLot() {
 		parkinglot=null;
 		parkingSlotsList=null;
 		colorWiseCarsList=null;

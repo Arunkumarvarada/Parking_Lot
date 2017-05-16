@@ -8,11 +8,7 @@ public interface ParkingSlotManagement {
 
 	public void getSlotNumbersFromColor(String color);
 
-	public void destroyParkingSlot();
-
-	public void createParkingSlots();
-
-	public void delteParkingSlots();
+	public void destroyParkingLot();
 
 	public void leave(String slotNo);
 
