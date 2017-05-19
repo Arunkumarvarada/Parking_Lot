@@ -2,8 +2,8 @@ package com.gojek.parkingsol;
 
 public class Car {
 
-	private String regNo;
-	private String color;
+	String regNo;
+	String color;
 
 	public Car(String regNo, String color) {
 		super();
