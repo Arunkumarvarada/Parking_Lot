@@ -10,7 +10,7 @@ import com.gojek.parkingsol.exception.InvalidInputException;
 public class ParkingSlotManagement {
 	private int MAXSIZE = 0;
 	private ArrayList<Integer> parkingSlotsList;
-	private TreeMap<String, Car> parkinglot;// map1
+	private LinkedHashMap<String, Car> parkinglot;// map1
 	private LinkedHashMap<String, String> colorWithRegNO;// map2
 	private LinkedHashMap<String, ArrayList<String>> colorWiseCarsList;// map3
 
@@ -20,16 +20,18 @@ public class ParkingSlotManagement {
 		} catch (Exception e) {
 			System.out.println("Invalid Slot Count");
 		}
-		if (this.MAXSIZE < 0) {
-			throw new InvalidInputException("slot Number should be either greater zero");
-		}
-		this.parkinglot = new TreeMap<String, Car>();
+		this.parkingSlotsList = new ArrayList<Integer>() {};
+		for (int i=1; i<= this.MAXSIZE; i++) {
+			parkingSlotsList.add(i);
+        }
+		this.parkinglot = new LinkedHashMap<String, Car>();
 		this.colorWithRegNO = new LinkedHashMap<String, String>();
 		this.colorWiseCarsList = new LinkedHashMap<String, ArrayList<String>>();
 		System.out.println("Created parking Slot with " + slotCount + " slots");
+		System.out.println(this.parkinglot.isEmpty());
 	}
 
-	public void destroyParkingLot() {
+	public void destroyParkingSlot() {
 		parkinglot = null;
 		parkingSlotsList = null;
 		colorWithRegNO = null;
@@ -38,32 +40,32 @@ public class ParkingSlotManagement {
 	}
 
 	public void park(String regNo, String color) {
-		if (this.MAXSIZE == 0) {
-			System.out.println("Sorry, parking lot is not created");
-			System.out.println();
-		} else if (this.parkingSlotsList.size() == this.MAXSIZE) {
-			System.out.println("Sorry, parking lot is full");
-			System.out.println();
-		} else {
-			Collections.sort(parkingSlotsList);
-			String slot = parkingSlotsList.get(0).toString();
-			Car car = new Car(regNo, color);
-			this.parkinglot.put(slot, car);
-			this.colorWithRegNO.put(regNo, slot);
-			if (this.colorWiseCarsList.containsKey(color)) {
-				ArrayList<String> regNoList = this.colorWiseCarsList.get(color);
-				this.colorWiseCarsList.remove(color);
-				regNoList.add(regNo);
-				this.colorWiseCarsList.put(color, regNoList);
-			} else {
-				ArrayList<String> regNoList = new ArrayList<String>();
-				regNoList.add(regNo);
-				this.colorWiseCarsList.put(color, regNoList);
-			}
-			System.out.println("Allocated slot number: " + slot);
-			System.out.println();
-			parkingSlotsList.remove(0);
-		}
+		 if (this.MAXSIZE == 0) {
+	            System.out.println("Sorry, parking lot is not created");
+	            System.out.println();
+	        } else if (this.parkinglot.size() == this.MAXSIZE) {
+	            System.out.println("Sorry, parking lot is full");
+	            System.out.println();
+	        } else {
+	            Collections.sort(parkingSlotsList);
+	            String slot = parkingSlotsList.get(0).toString();
+	            Car car = new Car(regNo, color);
+	            this.parkinglot.put(slot, car);
+	            this.colorWithRegNO.put(regNo, slot);
+	            if (this.colorWiseCarsList.containsKey(color)) {
+	                ArrayList<String> regNoList = this.colorWiseCarsList.get(color);
+	                this.colorWiseCarsList.remove(color);
+	                regNoList.add(regNo);
+	                this.colorWiseCarsList.put(color, regNoList);
+	            } else {
+	                ArrayList<String> regNoList = new ArrayList<String>();
+	                regNoList.add(regNo);
+	                this.colorWiseCarsList.put(color, regNoList);
+	            }
+	            System.out.println("Allocated slot number: " + slot);
+	            System.out.println();
+	            parkingSlotsList.remove(0);
+	        }
 	}
 
 	public void leave(String slotNo) {
@@ -93,7 +95,7 @@ public class ParkingSlotManagement {
 		}
 	}
 
-	public void status() {
+	public void getStatus() {
 		if (this.MAXSIZE == 0) {
 			System.out.println("Sorry, parking lot is not created");
 			System.out.println();
@@ -171,5 +173,12 @@ public class ParkingSlotManagement {
 			System.out.println("Not found");
 			System.out.println();
 		}
+	}
+
+	public static void main(String[] args) throws InvalidInputException {
+		ParkingSlotManagement parking= new ParkingSlotManagement();
+		parking.createParkingSlots("6");
+		parking.park("KA-01-HH-1234", "White");
+		parking.getStatus();
 	}
 }

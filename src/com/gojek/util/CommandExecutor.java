@@ -19,12 +19,14 @@ public class CommandExecutor {
 
 	private void populateCommandsHashMap() throws NoSuchMethodException {
 		commandsMap.put("create_parking_lot", ParkingSlotManagement.class.getMethod("createParkingSlots", String.class));
-		commandsMap.put("destroy", ParkingSlotManagement.class.getMethod("destroyParkingSlot", String.class));
-		commandsMap.put("Park", ParkingSlotManagement.class.getMethod("createParkingSlots", String.class));
+		commandsMap.put("park", ParkingSlotManagement.class.getMethod("park", String.class, String.class));
 		commandsMap.put("leave", ParkingSlotManagement.class.getMethod("leave", String.class));
-		commandsMap.put("status", ParkingSlotManagement.class.getMethod("getStatus", String.class));
-		commandsMap.put("registration_numbers_for_cars_with_colour", ParkingSlotManagement.class.getMethod("createParkingSlots", String.class));
-		commandsMap.put("slot_numbers_for_cars_with_colour", ParkingSlotManagement.class.getMethod("createParkingSlots", String.class));
-		commandsMap.put("slot_number_for_registration_number", ParkingSlotManagement.class.getMethod("getParkingSlotsBasedonColor", String.class));
+		commandsMap.put("status", ParkingSlotManagement.class.getMethod("getStatus"));
+		commandsMap.put("registration_numbers_for_cars_with_colour",
+				ParkingSlotManagement.class.getMethod("getRegistrationNumbersFromColor", String.class));
+		commandsMap.put("slot_numbers_for_cars_with_colour",
+				ParkingSlotManagement.class.getMethod("getSlotNumbersFromColor", String.class));
+		commandsMap.put("slot_number_for_registration_number",
+				ParkingSlotManagement.class.getMethod("getSlotNumberFromRegNo", String.class));
 	}
 }
