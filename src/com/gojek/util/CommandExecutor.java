@@ -1,4 +1,4 @@
-package com.gojek.command;
+package com.gojek.util;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;

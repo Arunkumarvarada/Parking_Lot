@@ -5,4 +5,4 @@
  * @author varadago
  *
  */
-package com.gojek.command;
+package com.gojek.util;
